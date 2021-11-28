@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+</head>
+<body>
+    <center>
+    <table style="border-collapse:separate;border-spacing: 10px;padding: 50px;border: 1px solid black;text-align: center;background-color:yellow;
+    color: black;">
+        <tr>
+            <th>Boarding Date/Time</th>
+            <td>From</th>
+            <th>To</th>
+            <th>Arrival Date/Time</th>
+            <th>Train ID</th>
+            <th>Number of Seats</th>
+            <th>Cost</th>
+            <th>Seat Numbers</th>
+            <th>PNR</th>
+        </tr>
+        {% for item in query%}
+        {% ifequal request.user.username item.booked_by %}
+        <tr style="padding: 5px;"> 
+            <td>{{ item.board_dt }}</td>
+            <td>{{ item.boarding_station }}</td>
+            <td>{{ item.arrival_station }}</td>
+            <td>{{ item.arrive_dt }}</td>
+            <td>{{ item.train_id }}</td>
+            <td>{{ item.seats_booked }}</td>
+            <td>{{ item.total_cost }}</td>
+            <td>{{ item.seat_nums }}</td>
+            <td>{{ item.pnr }}</td>
+        </tr>
+        {% endifequal %}
+        {% endfor %}
+    </table>
+    <center>
+</body>
+</html>

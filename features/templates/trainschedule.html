@@ -1,0 +1,39 @@
+{% extends 'homepage.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{%block body%}
+<br>
+<br>
+<center>
+    <form action='' method='POST'>
+        {% csrf_token %}
+        <input type='text' name='train_id'>
+        &nbsp
+        <input class="btn btn-success" type='submit' value='check'>
+    </form>
+    <table style="border-collapse:separate;border-spacing: 10px;padding: 50px;border: 1px solid black;text-align: center;background-color:yellow;
+        color: black;">
+        <tr>
+            <b>
+            <th>Train ID</th>
+            <td>Departure Station</th>
+            <th>Arrival Station</th>
+            <th>Boarding(Date/Time)</th>
+            <th>Arrival(Date/Time)</th>
+            <th>Cost Per Seat</th>
+            </b>
+        </tr>
+    {% for o in query %}
+    <tr style="padding: 5px;"> 
+        <td><input type="text" name="tid" value="{{ o.train_id }}" style="background: yellow;border: none;" readonly></td>
+        <td><input type="text" name="dstation" value="{{ o.departure_station }}" style="background: yellow;border: none;" readonly></td>
+        <td><input type="text" name="astation" value="{{ o.arrival_station }}" style="background: yellow;border: none;" readonly></td>
+        <td><input type="text" name="d_date" value="{{ o.departure_date }}" style="background: yellow;border: none;" readonly></td>
+        <td><input type="text" name="a_date" value="{{ o.arrival_date }}" style="background: yellow;border: none;" readonly></td>
+        <td><input type="text" name="cost" value="{{ o.cost }}" style="background: yellow;border: none;" readonly></td>
+    </tr>
+    {% endfor %}
+    </table>
+</center>
+{%endblock body%}
+</html>

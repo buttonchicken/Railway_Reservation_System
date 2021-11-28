@@ -1,0 +1,62 @@
+{% extends 'homepage.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}    
+<style>
+        body
+        {
+            background-image:url('{%static "bgtrain" %}');
+            background-size:100%;
+            background-repeat:no-repeat;
+
+        }
+    </style>
+</head>
+{%block body%}
+<center>
+<body>
+    <br><br><br>
+    {%if form.errors%}
+    <h3>{{form.errors}}</h3>
+    {%else%}
+    <form class="bform" action="" method="POST">
+        {% csrf_token %}
+  <select id="from" name="depart" style="width: 100px;margin: 10px;">
+    <option selected disabled>From</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
+    <option value="F">F</option>
+    <option value="P">P</option>
+    <option value="Q">Q</option>
+    <option value="R">R</option>
+    <option value="S">S</option>
+  </select>
+  <select id="to" name="arrive" style="width: 100px;margin: 10px;">
+    <option selected disabled>To</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
+    <option value="F">F</option>
+    <option value="P">P</option>
+    <option value="Q">Q</option>
+    <option value="R">R</option>
+    <option value="S">S</option>
+    </select>
+    <br>
+    <input type="int" name="numseats" placeholder="No. of seats" style="width: 100px;margin: 10px;">
+    <br>
+    <input type="date" id="departuredate" name="departuredate" min="<?= date('Y-m-d'); ?>">
+    <br>
+    <br>
+    <input style="border-radius: 12px; background-color: #008CBA;font-size: 18px;" type="submit" value="search">
+    </form>
+    {%endif%}
+</body>
+{%endblock body%}
+</html>
